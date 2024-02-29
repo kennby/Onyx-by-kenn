@@ -5,9 +5,9 @@ export async function before(m, {conn, participants, groupMetadata}) {
   if (!m.messageStubType || !m.isGroup) return !0;
   let pp = await conn.profilePictureUrl(m.messageStubParameters[0], 'image').catch(_ => './src/avatar_contact.png')
   let chat = global.db.data.chats[m.chat]
-
+  
   if (chat.welcome && m.messageStubType == 27) {
-    let welcome = `┌─★ *Ai Hoshino - MD* \n│「 Bienvenido 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │✑  Bienvenido a\n   │✑  ${groupMetadata.subject}\n   └───────────────┈ ⳹`
+    let welcome = `┌─★ *ONYX - MD* \n│「 Bienvenido 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │✑  Bienvenido a\n   │✑  ${groupMetadata.subject}\n   └───────────────┈ ⳹`
     
     await conn.sendMessage(
     m.chat,
@@ -21,7 +21,7 @@ export async function before(m, {conn, participants, groupMetadata}) {
       forwardingScore: 9999, 
        isForwarded: true, 
         externalAdReply: {
-          title: gcname,
+          title: namebot,
           sourceUrl: group,
           mediaType: 1,
           renderLargerThumbnail: true, 
@@ -36,7 +36,7 @@ export async function before(m, {conn, participants, groupMetadata}) {
   }
   
 if (chat.welcome && m.messageStubType == 28) {
-    let bye = `┌─★ *Ai Hoshino - MD* \n│「 ADIOS 👋 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │✑  Se fue\n   │✑ Jamás te quisimos aquí\n   └───────────────┈ ⳹`
+    let bye = `┌─★ *ONYX - MD* \n│「 ADIOS 👋 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │✑  Se fue\n   │✑ Jamás te quisimos aquí\n   └───────────────┈ ⳹`
 
     await conn.sendMessage(
     m.chat,
@@ -50,7 +50,7 @@ if (chat.welcome && m.messageStubType == 28) {
       forwardingScore: 9999, 
        isForwarded: true, 
         externalAdReply: {
-          title: gcname,
+          title: namebot,
           sourceUrl: group,
           mediaType: 1,
           renderLargerThumbnail: true, 
@@ -65,7 +65,7 @@ if (chat.welcome && m.messageStubType == 28) {
   }
   
   if (chat.welcome && m.messageStubType == 32) {
-    let kick = `┌─★ *Ai Hoshino - MD* \n│「 ADIOS 👋 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │✑  Se fue\n   │✑ Jamás te quisimos aquí\n   └───────────────┈ ⳹`
+    let kick = `┌─★ *ONYX - MD* \n│「 ADIOS 👋 」\n└┬★ 「 @${m.messageStubParameters[0].split`@`[0]} 」\n   │✑  Se fue\n   │✑ Jamás te quisimos aquí\n   └───────────────┈ ⳹`
 
     await conn.sendMessage(
     m.chat,
@@ -79,7 +79,7 @@ if (chat.welcome && m.messageStubType == 28) {
       forwardingScore: 9999, 
        isForwarded: true, 
         externalAdReply: {
-          title: gcname,
+          title: namebot,
           sourceUrl: group,
           mediaType: 1,
           renderLargerThumbnail: true, 
