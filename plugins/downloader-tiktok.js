@@ -22,6 +22,6 @@ conn.reply(m.chat, '*☓ Ocurrió un error inesperado*', m, adReply).then(_ => m
 handler.help = ['tiktok'].map(v => v + ' <url tt>')
 handler.tags = ['downloader']
 handler.command = /^(tiktok|ttdl|tiktokdl|tiktoknowm)$/i
-handler.star = 2
+handler.star = 0
 handler.register = true 
 export default handler
