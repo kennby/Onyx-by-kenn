@@ -523,10 +523,8 @@ export async function deleteUpdate(message) {
         if (chat.delete)
             return
         await this.reply(msg.chat, `
-≡ Borró un mensaje  
-┌─⊷  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀 
-▢ *Nombre :* @${participant.split`@`[0]} 
-└─────────────
+𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀 
+*Nombre :* @${participant.split`@`[0]} 
 Para desactivar esta función, escriba 
 */off antidelete*
 *.enable delete*
@@ -541,16 +539,16 @@ Para desactivar esta función, escriba
 
 global.dfail = (type, m, conn) => {
     let msg = {
-        rowner: `ⓘ Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: `ⓘ Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: `ⓘ Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: `ⓘ Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: `ⓘ Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en *Grupos*.`,
-        private: `ⓘ Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: `ⓘ Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: `ⓘ Hola @${m.sender.split`@`[0]}, la bot deve ser *Administradora* para ejecutar este Comando.`,
-        unreg: `ⓘ Hola @${m.sender.split`@`[0]}, para usar este comando debes estar *Registrado.*`,
-        restrict: `ⓘ Hola @${m.sender.split`@`[0]}, esta característica está *deshabilitada*`
+        rowner: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
+        owner: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
+        mods: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
+        premium: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por Usuarios *Premium*.`,
+        group: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en *Grupos*.`,
+        private: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en mi Chat *Privado*.`,
+        admin: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
+        botAdmin: ` Hola @${m.sender.split`@`[0]}, la bot deve ser *Administradora* para ejecutar este Comando.`,
+        unreg: ` Hola @${m.sender.split`@`[0]}, para usar este comando debes estar *Registrado.*`,
+        restrict: ` Hola @${m.sender.split`@`[0]}, esta característica está *deshabilitada*`
     }[type]
     if (msg) return conn.reply(m.chat, msg, estilo, adReply).then(_ => m.react('✖️'))
 }
