@@ -24,11 +24,11 @@ const rl = createInterface(process.stdin, process.stdout)
 const app = express()
 const port = process.env.PORT || 8080;
 
-say(`Ai Hoshino`, {
+say(`ONYX`, {
 font: 'chrome',
 align: 'center',
 gradient: ['red', 'magenta']})
-say(`WhatsApp Bot Multi Device`, {
+say(`WhatsApp Bot ONYX`, {
 font: 'console',
 align: 'center',
 gradient: ['red', 'magenta']})
