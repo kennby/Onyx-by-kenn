@@ -1,7 +1,7 @@
 { 
-    "name": "Ai Hoshino - MD",
+    "name": "ONYX",
     "version": "1.0.0",
-    "description": "Simple WhatsApp Bot Multi Device",
+    "description": "Simple WhatsApp Bot ONYX",
     "main": "index.js",
     "type": "module",
     "directories": {
@@ -23,16 +23,16 @@
         "multi-device",
         "baileys-md"
     ],
-    "homepage": "https://github.com/NakanoTeam/Ai-Hoshino",
+    "homepage": "",
     "author": {
-        "name": "おDaniel"
+        "name": "KENN"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/NakanoTeam/Ai-Hoshino.git"
+        "url": ""
     },
     "bugs": {
-        "url": "https://github.com/NakanoTeam/Ai-Hoshino/issues"
+        "url": ""
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
