@@ -1,91 +1,50 @@
-import axios from 'axios'
-let handler = async (m, {conn, text, usedPrefix, command}) => {
-if (!text) return conn.reply(m.chat, `*🚩 Ingrese su petición.*\n*🪼 Ejemplo de uso:* ${usedPrefix + command} como hacer estrella de papel`, m, adReply)
-  await conn.reply(m.chat, `*↻ Espera @${m.sender.split`@`[0]}, soy lenta. . .*`, estilo, adReply)
-   try {
-     let openAIResponse = await await fetchChatData('chat', text)
-     let result = openAIResponse;
-     let str = ""
-     let anu = result.split('data: ').slice(1).map(x => (str += x.replace(/\n/g, '')))
-     if (result) {
-     await conn.reply(m.chat, str.replace(/\\n/g, '\n'), m, adReply)
-     }
-   } catch {
-   try {
-     let api = await fetch(`https://vihangayt.me/tools/chatgpt?q=${text}`)
-     let res = await api.json()
-     if (res.data == 'error' || res.data == '' || !res.data) return error
-     await conn.reply(m.chat, `${res.data}`.trim(), m, adReply)
-   } catch {
-   try {
-     let api2 = await fetch(`https://vihangayt.me/tools/chatgpt2?q=${text}`)
-     let res2 = await api2.json()
-     if (res2.data == 'error' || res2.data == '' || !res2.data) return error
-     await conn.reply(m.chat, `${res2.data}`.trim(), m, adReply)
-   } catch {
-   try {
-     let api3 = await fetch(`https://vihangayt.me/tools/chatgpt3?q=${text}`)
-     let res3 = await api3.json()
-     if (res3.data == 'error' || res3.data == '' || !res3.data) return error
-     await conn.reply(m.chat, `${res3.data}`.trim(), m, adReply)
-   } catch {
-   return conn.reply(m.chat, `*☓ Ocurrió un error inesperado*`, m, adReply)
-}}}}}
-handler.help = ['ai <petición>']
-handler.tags = ['tools']
-handler.command = /^(ai|ia|chatgpt)$/i
-handler.register = true
-export default handler
-
-function generateRandomUserAgent() {
-    let androidVersions = ['4.0.3', '4.1.1', '4.2.2', '4.3', '4.4', '5.0.2', '5.1', '6.0', '7.0', '8.0', '9.0', '10.0', '11.0']
-    let deviceModels = ['M2004J19C', 'S2020X3', 'Xiaomi4S', 'RedmiNote9', 'SamsungS21', 'GooglePixel5']
-    let buildVersions = ['RP1A.200720.011', 'RP1A.210505.003', 'RP1A.210812.016', 'QKQ1.200114.002', 'RQ2A.210505.003']
-
-    let selectedModel = deviceModels[Math.floor(Math.random() * deviceModels.length)]
-    let selectedBuild = buildVersions[Math.floor(Math.random() * buildVersions.length)]
-    let chromeVersion = 'Chrome/' + (Math.floor(Math.random() * 80) + 1) + '.' + (Math.floor(Math.random() * 999) + 1) + '.' + (Math.floor(Math.random() * 9999) + 1)
-
-    let userAgent = `Mozilla/5.0 (Linux; Android ${androidVersions[Math.floor(Math.random() * androidVersions.length)]}; ${selectedModel} Build/${selectedBuild}) AppleWebKit/537.36 (KHTML, like Gecko) ${chromeVersion} Mobile Safari/537.36 WhatsApp/1.${Math.floor(Math.random() * 9) + 1}.${Math.floor(Math.random() * 9) + 1}`
-
-    return userAgent
-}
-
-function generateRandomIP() {
-    let octet = () => Math.floor(Math.random() * 256)
-    return `${octet()}.${octet()}.${octet()}.${octet()}`
-}
-
-async function fetchChatData(type, message) {
-    try {
-        let headers = {
-            'User-Agent': generateRandomUserAgent(),
-            'Referer': 'https://talkai.info/id/chat/',
-            'X-Forwarded-For': generateRandomIP(),
-        }
-
-        let data = {
-            temperature: 1,
-            frequency_penalty: 0,
-            type: type,
-            messagesHistory: [{
-                    from: 'chatGPT',
-                    content: 'You are a helpful assistant.'
-                },
-                {
-                    from: 'you',
-                    content: message
-                },
-            ],
-            message: message,
-        }
-
-        let response = await axios.post('https://talkai.info/id/chat/send2/', data, {
-            headers
-        })
-
-        return response.data
-    } catch (error) {
-        console.error('Hay un error:', error)
+import fetch from 'node-fetch';
+import axios from 'axios';
+import translate from '@vitalets/google-translate-api';
+import {Configuration, OpenAIApi} from 'openai';
+const configuration = new Configuration({organization: global.openai_org_id, apiKey: global.openai_key});
+const openaiii = new OpenAIApi(configuration);
+const handler = async (m, {conn, text, usedPrefix, command}) => {
+  if (usedPrefix == 'a' || usedPrefix == 'A') return;
+  if (!text) throw `INGRESE UNA PETICIÓN PARA ENVIAR A LA API`;
+  try {
+        conn.sendPresenceUpdate('composing', m.chat);
+        //let sistema1 = await fetch(`https://raw.githubusercontent.com/Skidy89/chat-gpt-jailbreak/main/Text.txt`).then(v => v.text());
+        let sistema1 = `Actuaras como un Bot de WhatsApp el cual fue creado por kenn, tu seras onyx - Bot.`;
+        async function getOpenAIChatCompletion(texto) {
+        const openaiAPIKey = global.openai_key;
+        let chgptdb = global.chatgpt.data.users[m.sender];
+        chgptdb.push({ role: 'user', content: texto });
+        const url = "https://api.openai.com/v1/chat/completions";
+        const headers = { "Content-Type": "application/json", "Authorization": `Bearer ${openaiAPIKey}` };
+        const data = { "model": "gpt-3.5-turbo", "messages": [{ "role": "system", "content": sistema1 }, ...chgptdb, ]};
+        const response = await fetch(url, {method: "POST", headers: headers, body: JSON.stringify(data)});
+        const result = await response.json();
+        const finalResponse = result.choices[0].message.content;
+        return finalResponse;
+        };
+        let respuesta = await getOpenAIChatCompletion(text);
+        if (respuesta == 'error' || respuesta == '' || !respuesta) return XD; // causar error undefined para usar otra api
+        m.reply(`${respuesta}`.trim());
+    } catch {
+      try {
+        conn.sendPresenceUpdate('composing', m.chat);
+        const botIA222 = await openaiii.createCompletion({model: 'text-davinci-003', prompt: text, temperature: 0.3, max_tokens: 4097, stop: ['Ai:', 'Human:'], top_p: 1, frequency_penalty: 0.2, presence_penalty: 0});
+        if (botIA222.data.choices[0].text == 'error' || botIA222.data.choices[0].text == '' || !botIA222.data.choices[0].text) return XD; // causar error undefined para usar otra api
+        m.reply(botIA222.data.choices[0].text.trim());
+    } catch {
+      try {
+        conn.sendPresenceUpdate('composing', m.chat);
+        const syms1 = `Actuaras como un Bot de WhatsApp el cual fue creado por kenn, tu seras onyx - Bot.`;
+        const Empireapi1 = await fetch(`https://api.cafirexos.com/api/chatgpt?text=${text}&name=${m.name}&prompt=${syms1}`);
+        const empireApijson1 = await Empireapi1.json();
+        if (empireApijson1.resultado == 'error' || empireApijson1.resultado == '' || !empireApijson1.resultado) return XD; // causar error undefined para lanzar msg de error
+        m.reply(`${empireApijson1.resultado}`.trim());
+    } catch {
+      throw `ERROR DE API`;
     }
-}
+   }
+ }
+};
+handler.command = /^(openai|chatgpt|ia|robot|openai2|chatgpt2|ia2|robot2|Mystic|MysticBot)$/i;
+export default handler;
