@@ -19,7 +19,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
       } catch (e) {
         console.error(e)
       } finally {
-      await conn.reply(m.chat, `*↻ Espera @${m.sender.split`@`[0]}, soy lenta. . .*`, estilo, adSticker)
+      await conn.reply(m.chat, `*↻ Espera @${m.sender.split`@`[0]}, soy lento. . .*`, estilo, adSticker)
         if (!stiker) {
           if (/webp/g.test(mime)) out = await webp2png(img)
           else if (/image/g.test(mime)) out = await uploadImage(img)
@@ -48,4 +48,4 @@ export default handler
 
 const isUrl = (text) => {
   return text.match(new RegExp(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)(jpe?g|gif|png)/, 'gi'))
-}
+            }
