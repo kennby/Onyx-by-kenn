@@ -2,7 +2,7 @@ import axios from 'axios'
 import cheerio from 'cheerio'
 
 let handler = async (m, { conn, args, command }) => {
-	if (!args[0]) return conn.reply(m.chat, '*🚩 Escribe la URL de un video de Facebook que deseas descargar.*', m, adReply)
+	if (!args[0]) return conn.reply(m.chat, '> Escribe la URL de un video de Facebook que deseas descargar.*', m, adReply)
 	try {
 	await m.react('🕓')
 	let config = {
@@ -29,6 +29,6 @@ let handler = async (m, { conn, args, command }) => {
 handler.help = ['facebook'].map(v => v + ' <url fb>')
 handler.tags = ['downloader']
 handler.command = /^((facebook|fb)(downloder|dl)?)$/i
-handler.star = 2
+handler.star = 0
 handler.register = true 
 export default handler
