@@ -5,8 +5,8 @@ import fetch from 'node-fetch'
 let handler = async (m, { args, usedPrefix, command }) => {
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) return conn.reply(m.chat, '*🚩 Responde a una foto o video.*', m, adReply)
-  await m.react('🕓')
+  if (!mime) return conn.reply(m.chat, '> Responde a una foto o video', m, adReply)
+  await m.react('🤖')
   let media = await q.download()
   let isTele = /image\/(png|jpe?g|gif)|video\/mp4/.test(mime)
   let link = await (isTele ? uploadImage : uploadFile)(media)
@@ -21,7 +21,7 @@ await m.react('✅')
 handler.help = ['tourl']
 handler.tags = ['tools']
 handler.command = /^(tourl|upload)$/i
-handler.star = 2
+handler.star = 0
 export default handler
 
 function formatBytes(bytes) {
