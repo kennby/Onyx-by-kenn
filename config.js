@@ -10,7 +10,7 @@ import moment from "moment-timezone"
 //⊱ ━━━━.⋅ Añada los numeros a ser Propietario/a ⋅.━━━ ⊰  
 
 global.owner = [
-  ['51902247905', 'KENN', true],
+  ['51907364682', 'KENN', true],
   [''],
   [''],
   ['']
@@ -57,13 +57,13 @@ global.group = 'https://whatsapp.com/channel/0029VaDajsjLI8YRnDjT2y1v'
 
 //━━━━━━━━━━━ ฅ^•ﻌ•^ฅ ━━━━━━━━━━━
 
-global.adanime = `ONYX BY KENN` 
-global.addescargas = `ONYX BY KENN`
-global.adimagen = `ONYX BY KENN` 
-global.adyoutube = `ONYX BY KENN` 
-global.adsticker = `ONYX BY KENN` 
-global.adsearch  = `ONYX BY KENN` 
-global.adnsfw = `ONYX BY KENN`
+global.adanime = `` 
+global.addescargas = ``
+global.adimagen = `` 
+global.adyoutube = `` 
+global.adsticker = `` 
+global.adsearch  = `` 
+global.adnsfw = ``
 
 //━━━━━━━━━━━ ฅ^•ﻌ•^ฅ ━━━━━━━━━━━
 
