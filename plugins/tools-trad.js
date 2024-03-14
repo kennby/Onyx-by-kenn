@@ -6,7 +6,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
         lang = args[0] ? args[0] : "id", text = args.slice(1).join(" ")
     } else if (m.quoted && m.quoted.text) {
         lang = args[0] ? args[0] : "id", text = m.quoted.text
-    } else return conn.reply(m.chat, `*🚩 Ejemplo: ${usedPrefix + command} es Hello World*`, m, adReply)
+    } else return conn.reply(m.chat, `> Ejemplo: ${usedPrefix + command} es Hello World*`, m, adReply)
     try {
     const prompt = encodeURIComponent(text)
         let reis = await fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=" + lang + "&dt=t&q=" + prompt)
@@ -27,7 +27,7 @@ let handler = async (m, { args, usedPrefix, command }) => {
 handler.help = ['trad <leng> <texto>']
 handler.tags = ['tools']
 handler.command = /^(translate|traducir|trad)$/i
-handler.star = 1
+handler.star = 0
 handler.register = true 
 export default handler
 
@@ -35,4 +35,4 @@ async function langList() {
     let data = await fetch("https://translate.google.com/translate_a/l?client=webapp&sl=auto&tl=en&v=1.0&hl=en&pv=1&tk=&source=bh&ssel=0&tsel=0&kc=1&tk=626515.626515&q=")
         .then((response) => response.json())
     return data.tl;
-}
+                   }
