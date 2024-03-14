@@ -19,11 +19,11 @@ let handler = async (m, { conn, usedPrefix, command }) => {
   txt += `*• Fecha de lanzamiento:* ${release_date}`
   await conn.reply(m.chat, txt, m, adReply)
   await m.react('✅')
-  } else return conn.reply(m.chat, `*🚩 Responde a un audio o video.*`, m, adReply)
+  } else return conn.reply(m.chat, `> Responde a un audio o video`, m, adReply)
 }
 handler.help = ['whatmusic <audio/video>']
 handler.tags = ['tools']
 handler.command = /^(whatmusic|shazam)$/i
-handler.star = 2
+handler.star = 0
 handler.register = true 
 export default handler
