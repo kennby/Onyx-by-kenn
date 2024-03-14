@@ -9,7 +9,7 @@ await m.react('✅')
 handler.help = ['imagen <texto>']
 handler.tags = ['search', 'img']
 handler.command = ['img', 'image', 'imagen'] 
-handler.star = 1
+handler.star = 0
 handler.register = true 
 
 export default handler
