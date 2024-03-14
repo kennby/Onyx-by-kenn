@@ -1,48 +1,31 @@
-import fg from 'api-dylux'
-import yts from 'yt-search'
-import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
-let limit = 100
-
-let handler = async (m, { conn, args, text, isPrems, isOwner, usedPrefix, command }) => {
-if (!args || !args[0]) return conn.reply(m.chat, `*🚩 Escribe la URL de un video de YouTube que deseas descargar.*`, m, adReply)
-if (!args[0].match(/youtu/gi)) return conn.reply(m.chat,`Verifica que la *URL* sea de YouTube`, m, adReply).then(_ => m.react('✖️'))
-let q = args[1] || '360p'
-
-await m.react('🕓')
-try {
-const yt = await fg.ytv(args[0], q)
-let { title, dl_url, size } = yt 
-let vid = (await yts(text)).all[0]
-
-let ytestilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: `${title}`, orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, adReply).then(_ => m.react('✖️'))
-
-await conn.reply(m.chat, `🍭 *Título ∙* ${title}\n⚖️ *Tamaño ∙* ${size}\n\n*↻ Espera @${m.sender.split`@`[0]}, soy lento. . .*`, ytestilo, adYT)
-     
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, ytestilo)
-await m.react('✅')
-} catch {
-try {
-let yt = await fg.ytmp4(args[0], q)
-let { title, size, dl_url } = yt
-let vid = (await yts(text)).all[0]
-
-let ytestilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: `${title}`, orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
-
-if (size.split('MB')[0] >= limit) return conn.reply(m.chat, `El archivo pesa mas de ${limit} MB, se canceló la Descarga.`, m, adReply).then(_ => m.react('✖️'))
-
-await conn.reply(m.chat, `🍭 *Título ∙* ${title}\n⚖️ *Tamaño ∙* ${size}\n\n*↻ Espera @${m.sender.split`@`[0]}, soy lento. . .*`, ytestilo, adYT)
-
-await conn.sendFile(m.chat, dl_url, 'yt.jpg', `${vid.title}\n⇆ㅤㅤ◁ㅤㅤ❚❚ㅤㅤ▷ㅤㅤ↻\n00:15 ━━━━●────── ${vid.timestamp}`, ytestilo)
-await m.react('✅')
-} catch {
-await conn.reply(m.chat,`*☓ Ocurrió un error inesperado*`, m, adReply).then(_ => m.react('✖️'))
-console.error(error)
-}}}
-handler.help = ['ytmp4 <url yt>']
-handler.tags = ['downloader']
-handler.command = /^(fgmp4|dlmp4|getvid|yt(v|mp4)?)$/i;
-handler.star = 2
-handler.register = true 
-export default handler
+import {youtubedl, youtubedlv2} from '@bochilteam/scraper';
+import fetch from 'node-fetch';
+const handler = async (m, {conn, args}) => {
+  if (!args[0]) throw '> *[❗𝐈𝐍𝐅𝐎❗] 𝙸𝙽𝚂𝙴𝚁𝚃𝙴 𝙴𝙻 𝙲𝙾𝙼𝙰𝙽𝙳𝙾 𝙼𝙰𝚂 𝙴𝙻 𝙴𝙽𝙻𝙰𝙲𝙴 / 𝙻𝙸𝙽𝙺 𝙳𝙴 𝚄𝙽 𝚅𝙸𝙳𝙴𝙾 𝙳𝙴 𝚈𝙾𝚄𝚃𝚄𝙱𝙴*';
+  await m.reply(`> *_⏳Sᴇ ᴇsᴛᴀ ᴘʀᴏᴄᴇsᴀɴᴅᴏ Sᴜ ᴠɪᴅᴇᴏ...⏳_*\n\n*◉ Sɪ Sᴜ ᴠɪᴅᴇᴏ ɴᴏ ᴇs ᴇɴᴠɪᴀᴅᴏ, ᴘʀᴜᴇʙᴇ ᴄᴏɴ ᴇʟ ᴄᴏᴍᴀɴᴅᴏ #playdoc ᴏ #play.2 ᴏ #ytmp4doc ◉*`);
+  try {
+    const qu = args[1] || '360';
+    const q = qu + 'p';
+    const v = args[0];
+    const yt = await youtubedl(v).catch(async (_) => await youtubedlv2(v));
+    const dl_url = await yt.video[q].download();
+    const ttl = await yt.title;
+    const size = await yt.video[q].fileSizeH;
+    const cap = `𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐃𝐋*\n *titulo* ${ttl}\n peso ${size}`.trim();
+    await await conn.sendMessage(m.chat, {document: {url: dl_url}, caption: cap, mimetype: 'video/mp4', fileName: ttl + `.mp4`}, {quoted: m});
+  } catch {
+    try {
+      const lolhuman = await fetch(`https://api.lolhuman.xyz/api/ytvideo2?apikey=GataDios&url=${args[0]}`);
+      const lolh = await lolhuman.json();
+      const n = lolh.result.title || 'error';
+      const n2 = lolh.result.link;
+      const n3 = lolh.result.size;
+      const cap2 = `𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐃𝐋*\n *𝚃𝙸𝚃𝚄𝙻𝙾:* ${n}\n❏ *𝙿𝙴𝚂𝙾:* ${n3}`.trim();
+      await conn.sendMessage(m.chat, {document: {url: n2}, caption: cap2, mimetype: 'video/mp4', fileName: n + `.mp4`}, {quoted: m});
+    } catch {
+      await conn.reply(m.chat, '> *[❗] 𝙴𝚁𝚁𝙾𝚁 𝙽𝙾 𝙵𝚄𝙴 𝙿𝙾𝚂𝙸𝙱𝙻𝙴 𝙳𝙴𝚂𝙲𝙰𝚁𝙶𝙰𝚁 𝙴𝙻 𝚅𝙸𝙳𝙴𝙾*', m);
+    }
+  }
+};
+handler.command = /^ytmp4doc|ytvdoc|ytmp4|ytv.2$/i;
+export default handler;
