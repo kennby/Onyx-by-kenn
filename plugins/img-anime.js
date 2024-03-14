@@ -2,8 +2,8 @@ import axios from 'axios';
 import fetch from 'node-fetch';
 const handler = async (m, {command, conn}) => {
   
-await m.react('🕓')
-await conn.reply(m.chat, `*↻ Espera @${m.sender.split`@`[0]}, soy lenta. . .*`, estilo, {
+await m.react('🤖')
+await conn.reply(m.chat, `Espera`, estilo, {
 contextInfo: { mentionedJid: [m.sender], externalAdReply :{ mediaUrl: null, mediaType: 1, showAdAttribution: true,
 title: adanime,
 body: desc,
@@ -37,7 +37,7 @@ await conn.sendFile(m.chat, json.url, 'shinobu.png', `*––––––『 ANI
 await m.react('✅')
   }
 
-if (command == 'waifu') {
+if (command == 'rw') {
 let res = await fetch('https://api.waifu.pics/sfw/waifu')
 if (!res.ok) return m.react('❌')
 let json = await res.json()
@@ -49,6 +49,6 @@ await m.react('✅')
 handler.help = ['megumin', 'neko', 'shinobu', 'waifu']
 handler.command = ['megumin', 'neko', 'shinobu', 'waifu']
 handler.tags = ['img']
-handler.star = 1
+handler.star = 0
 handler.register = true 
 export default handler
