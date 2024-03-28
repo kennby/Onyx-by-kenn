@@ -539,18 +539,18 @@ Para desactivar esta función, escriba
 
 global.dfail = (type, m, conn) => {
     let msg = {
-        rowner: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* de la Bot.`,
-        owner: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* de la Bot y *Sub Bots*.`,
-        mods: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Moderadores* de la Bot.`,
-        premium: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por Usuarios *Premium*.`,
-        group: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en *Grupos*.`,
-        private: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en mi Chat *Privado*.`,
-        admin: ` Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
-        botAdmin: ` Hola @${m.sender.split`@`[0]}, la bot deve ser *Administradora* para ejecutar este Comando.`,
-        unreg: ` Hola @${m.sender.split`@`[0]}, para usar este comando debes estar *Registrado.*`,
-        restrict: ` Hola @${m.sender.split`@`[0]}, esta característica está *deshabilitada*`
+        rowner: `Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* del Bot.`,
+        owner: `Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por el *Creador* del Bot y *Sub Bots*.`,
+        mods: `Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Moderadores* del Bot.`,
+        premium: `Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por Usuarios *Premium*.`,
+        group: `Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en *Grupos*.`,
+        private: `Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado en el Chat *Privado* del Bot.`,
+        admin: `Hola @${m.sender.split`@`[0]}, este comando solo puede ser utilizado por los *Administradores* del Grupo.`,
+        botAdmin: `Hola @${m.sender.split`@`[0]}, la bot debe ser *Administradora* para ejecutar este Comando.`,
+        unreg: `Hola @${m.sender.split`@`[0]}, para usar este comando debes estar *Registrado* en el Bot.`,
+        restrict: `Hola @${m.sender.split`@`[0]}, esta característica está *deshabilitada* en el Bot.`
     }[type]
-    if (msg) return conn.reply(m.chat, msg, estilo, adReply).then(_ => m.react('✖️'))
+    if (msg) return conn.reply(m.chat, msg, estilo, adReply).then(_ => m.react(''))
 }
 
 let file = global.__filename(import.meta.url, true)
