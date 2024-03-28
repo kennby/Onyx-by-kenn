@@ -164,7 +164,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     let pp11 = 'https://telegra.ph/file/e42d4f3dd28595112aa72.jpg'
     let pp12 = 'https://telegra.ph/file/e42d4f3dd28595112aa72.jpg'
     let pp13 = 'https://telegra.ph/file/e42d4f3dd28595112aa72.jpg'
-    m.react('⭐')
+    m.react('')
     conn.sendMessage(m.chat, { video: { url: [pp, pp2, pp3, pp4, pp5, pp6, pp7, pp8, pp9, pp10, pp11, pp12, pp13].getRandom() }, gifPlayback: true, caption: text.trim(), mentions: [m.sender] }, { quoted: estilo })
     
   } catch (e) {
@@ -188,4 +188,4 @@ function clockString(ms) {
   let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
-      }
+                     }
